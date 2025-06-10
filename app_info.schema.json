@@ -1,0 +1,461 @@
+{
+  "title": "App Info File",
+  "description": "A configuration file containing all necessary information to integrate a PLCnext Control App",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "plcnextapp": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "identifier": {
+          "type": "string",
+          "pattern": "^\\d{14}$",
+          "examples": [
+            "11111111111111",
+            "12341234123412"
+          ]
+        },
+        "version": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^(\\w[\\w ]*)(,\\w[\\w ]*)*$",
+          "examples": [
+            "AXC F 2152",
+            "AXC F 2152,AXC F 3152"
+          ]
+        },
+        "minfirmware_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "examples": [
+            "2023.3.0",
+            "2025.0.0",
+            "25.0.0"
+          ]
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "licensetype": {
+          "type": "string",
+          "enum": [
+            "Free",
+            "Full",
+            "Limited"
+          ]
+        },
+        "linkToAppPage": {
+          "type": "string"
+        },
+        "additionalInfo": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "InfoText",
+                  "ExternalLink",
+                  "LocalLink",
+                  "PortLink"
+                ]
+              }
+            },
+            "required": [
+              "key",
+              "value",
+              "type"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "type": {
+                      "const": "ExternalLink"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "url"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "type": {
+                      "const": "LocalLink"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "url"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "type": {
+                      "const": "PortLink"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "url"
+                  ]
+                }
+              }
+            ]
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "name",
+        "identifier",
+        "version",
+        "target",
+        "minfirmware_version"
+      ]
+    },
+    "engineerapp": {
+      "type": "object",
+      "properties": {
+        "folder": {
+          "$ref": "#/$defs/path"
+        }
+      },
+      "required": [
+        "folder"
+      ]
+    },
+    "cmdtools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "$ref": "#/$defs/path"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "plcnextextensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "acfconfigpath": {
+            "type": "string",
+            "pattern": "^\/?[\\w\\-\\.]+(\/[\\w\\-\\.]+)*\\.acf\\.config$",
+            "examples": [
+              "/path/to/my.acf.config",
+              "path/to/my.acf.config",
+              "my.acf.config"
+            ]
+          }
+        },
+        "required": [
+          "acfconfigpath"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "linuxdaemons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "$ref": "#/$defs/path"
+          },
+          "cmdargs": {
+            "type": "string"
+          },
+          "starttime": {
+            "type": "string",
+            "pattern": "^\\d+$",
+            "examples": [
+              "1",
+              "99"
+            ]
+          },
+          "initScriptTemplate": {
+            "$ref": "#/$defs/path"
+          }
+        },
+        "required": [
+          "path",
+          "cmdargs",
+          "starttime"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "sharedlibs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "libpath": {
+            "type": "string",
+            "pattern": "^\/?[\\w\\-\\.]+(\/[\\w\\-\\.]+)*\\.so$",
+            "examples": [
+              "/path/to/my.so",
+              "path/to/my.so",
+              "my.so"
+            ]
+          }
+        },
+        "required": [
+          "libpath"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "ocicontainer": {
+      "type": "object",
+      "properties": {
+        "quadletFiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "$ref": "#/$defs/path"
+              },
+              "type": {
+                "type": "string",
+                "default": "Main",
+                "enum": [
+                  "Main",
+                  "Dependency"
+                ]
+              }
+            },
+            "required": [
+              "path"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "environmentVariables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "value"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{64}$",
+                "examples": [
+                  "57f067446d29f661ee55e675aff86527f4817933f10592f6f3d34870b99fed04"
+                ]
+              },
+              "path": {
+                "$ref": "#/$defs/path"
+              }
+            },
+            "required": [
+              "name",
+              "id",
+              "path"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "quadletFiles",
+        "images"
+      ]
+    },
+    "datastorage": {
+      "type": "object",
+      "properties": {
+        "persistentdata": {
+          "type": "boolean"
+        },
+        "temporarydata": {
+          "type": "boolean"
+        },
+        "directoriesToCreate": {
+          "type": "object",
+          "properties": {
+            "temporary": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "$ref": "#/$defs/path"
+                  }
+                }
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "persistent": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "$ref": "#/$defs/path"
+                  }
+                }
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          }
+        }
+      },
+      "required": [
+        "persistentdata",
+        "temporarydata"
+      ],
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "plcnextservices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "service": {
+            "type": "string",
+            "enum": [
+              "WBM",
+              "EHMI",
+              "PROFINET DEVICE",
+              "PROFINET CONTROLLER",
+              "OPCUA",
+              "FWM",
+              "TRACING",
+              "DATALOGGER",
+              "IEC",
+              "ETHERNET IP",
+              "PROFICLOUD",
+              "LINUX SYSLOG",
+              "NETLOAD LIMITER",
+              "SOFTWARE UPDATE",
+              "GRPC LOCAL SERVER"
+            ]
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "MUST_HAVE",
+              "MUST_NOT_HAVE",
+              "EXCLUSIVE_ACCESS"
+            ]
+          }
+        },
+        "required": [
+          "service",
+          "action"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "updateconfigs": {
+      "type": "object",
+      "properties": {
+        "autoupdate_enabled": {
+          "type": "boolean"
+        },
+        "keep_persistentdata": {
+          "type": "boolean"
+        },
+        "keep_temporarydata": {
+          "type": "boolean"
+        },
+        "post_updatescript": {
+          "$ref": "#/$defs/path"
+        }
+      },
+      "required": [
+        "autoupdate_enabled"
+      ]
+    }
+  },
+  "required": [
+    "plcnextapp"
+  ],
+  "$defs": {
+    "path": {
+      "type": "string",
+      "pattern": "^\/?[\\w\\-\\.]+(\/[\\w\\-\\.]+)*\/?$",
+      "examples": [
+        "/path/to/file",
+        "path/to/file",
+        "/path/to/directory",
+        "/path/to/directory/",
+        "/path/to/archive.tar.gz",
+        "/path/to/next-file"
+      ]
+    }
+  }
+}
