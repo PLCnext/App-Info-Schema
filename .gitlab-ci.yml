@@ -1,0 +1,13 @@
+image: dockerregistry.europe.phoenixcontact.com/python:latest
+
+stages:
+  - test
+
+before_script:
+    - python --version ; pip --version
+
+test:
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pytest test.py
