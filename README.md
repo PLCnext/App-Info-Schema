@@ -36,6 +36,16 @@ The schema can also be referenced as a local file:
 
 Additionally, the schema file can be set up to be used for any `app_info.json` in Visual Studio Code as specified in the [documentation](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings).
 
+### Libraries
+
+There are libraries available for a broad range of programming languages, that implement JSON Schema and can be used easily.
+
+Some examples:
+- Python: https://python-jsonschema.readthedocs.io/en/stable/
+- JavaScript: https://ajv.js.org/
+- .NET: https://www.newtonsoft.com/jsonschema
+- Go: https://github.com/kaptinlin/jsonschema
+
 ### Command Line Tools
 
 There are command line tools, that implement the validation against JSON schemas and come in handy when used in a CICD pipeline or as part of a local build process of the PLCnext Control App.
