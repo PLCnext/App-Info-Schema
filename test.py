@@ -152,7 +152,15 @@ def test_plcnextapp_invalid_firmware(schema, minimal_plcnextapp, minfirmware_ver
     with pytest.raises(ValidationError):
         validate(instance=minimal_plcnextapp, schema=schema)
 
-@pytest.mark.parametrize("target", ["AXC F 2152,", "AXC F 2152, AXC F 3152", "", None])
+@pytest.mark.parametrize("target", [
+    "AXC F 2152,",
+    "AXC F 2152 ", 
+    "AXC F 2152, ", 
+    "AXC F 2152, AXC F 3152", 
+    "AXC F 2152 ,AXC F 3152", 
+    "AXC F 2152 , AXC F 3152", 
+    "", 
+    None])
 def test_plcnextapp_invalid_target(schema, minimal_plcnextapp, target):
     minimal_plcnextapp["plcnextapp"]["target"] = target
     with pytest.raises(ValidationError):

@@ -23,7 +23,7 @@
         },
         "target": {
           "type": "string",
-          "pattern": "^(\\w[\\w ]*)(,\\w[\\w ]*)*$",
+          "pattern": "^(\\w[\\w\\- ]*\\w)(,\\w[\\w\\- ]*\\w)*$",
           "examples": [
             "AXC F 2152",
             "AXC F 2152,AXC F 3152"
