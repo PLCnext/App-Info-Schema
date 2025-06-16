@@ -12,11 +12,21 @@ The schema file may be used in different ways.
 
 Many editors support schema files out of the box and allow validation and completions while editing a JSON file.
 
-Therefore a `$schema` property can be added:
+Therefore, a `$schema` property containing a permalink to the raw schema file can be added:
 
 ```json
 {
-    "$schema": "https://git-ima.europe.phoenixcontact.com/K06295/app-info-schema/-/blob/147676fbe48d4917fb26a14f0044912172542574/app_info.schema.json"
+    "$schema": "https://git-ima.europe.phoenixcontact.com/K06295/app-info-schema/-/raw/5cd401052c48f2dd1855c74ba80b7dd68dedbd8b/app-info-schema.json"
+    "plcnextapp": {
+        ...
+    }
+}
+```
+To ensure updates are available as soon as they are pushed to main, a dynamic link can be used instead:
+
+```json
+{
+    "$schema": "https://git-ima.europe.phoenixcontact.com/K06295/app-info-schema/-/raw/main/app-info-schema.json"
     "plcnextapp": {
         ...
     }
@@ -43,7 +53,7 @@ There are libraries available for a broad range of programming languages, that i
 Some examples:
 - Python: https://python-jsonschema.readthedocs.io/en/stable/
 - JavaScript: https://ajv.js.org/
-- .NET: https://www.newtonsoft.com/jsonschema
+- .NET: https://docs.json-everything.net/schema/basics/
 - Go: https://github.com/kaptinlin/jsonschema
 
 ### Command Line Tools
