@@ -5,7 +5,7 @@ from jsonschema import ValidationError, validate
 
 @pytest.fixture
 def schema():
-    with open("./app_info.schema.json") as file:
+    with open("./app-info-schema.json") as file:
         return json.load(file)
 
 @pytest.fixture
