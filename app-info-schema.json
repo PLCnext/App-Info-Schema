@@ -156,8 +156,7 @@
                 }
               }
             ]
-          },
-          "minItems": 1
+          }
         }
       },
       "required": [
@@ -188,6 +187,7 @@
     "cmdtools": {
       "type": "array",
       "description": "Configuration for command line tools as part of the app. (optional)\nSupported from firmware 19.3.0",
+      "uniqueItems": true,
       "items": {
         "type": "object",
         "properties": {
@@ -203,13 +203,12 @@
         "required": [
           "path"
         ]
-      },
-      "minItems": 1,
-      "uniqueItems": true
+      }
     },
     "plcnextextensions": {
       "type": "array",
       "description": "Configuration for PLCnext Technology Extensions as part of the app. (optional)\nSupported from firmware 19.3.0",
+      "uniqueItems": true,
       "items": {
         "type": "object",
         "properties": {
@@ -227,14 +226,13 @@
         "required": [
           "acfconfigpath"
         ]
-      },
-      "minItems": 1,
-      "uniqueItems": true
+      }
     },
     "linuxdaemons": {
       "type": "array",
       "description": "Configuration for linux daemons as part of the app. (optional)\nSupported from firmware 19.3.0 to 25.0.0",
       "deprecated": true,
+      "uniqueItems": true,
       "items": {
         "type": "object",
         "properties": {
@@ -273,14 +271,13 @@
           "cmdargs",
           "starttime"
         ]
-      },
-      "minItems": 1,
-      "uniqueItems": true
+      }
     },
     "sharedlibs": {
       "type": "array",
       "description": "Configuration for shared libraries as part of the app. (optional)\nSupported from firmware 19.3.0 to 25.0.0",
       "deprecated": true,
+      "uniqueItems": true,
       "items": {
         "type": "object",
         "properties": {
@@ -298,9 +295,7 @@
         "required": [
           "libpath"
         ]
-      },
-      "minItems": 1,
-      "uniqueItems": true
+      }
     },
     "ocicontainer": {
       "type": "object",
@@ -309,6 +304,8 @@
         "quadletFiles": {
           "type": "array",
           "description": "Specifies podman unit (Quadlet) files.",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "object",
             "properties": {
@@ -334,13 +331,12 @@
             "required": [
               "path"
             ]
-          },
-          "minItems": 1,
-          "uniqueItems": true
+          }
         },
         "environmentVariables": {
           "type": "array",
           "description": "Environment variables for the quadlet files as key-value pair. (optional)",
+          "uniqueItems": true,
           "items": {
             "type": "object",
             "properties": {
@@ -357,13 +353,13 @@
               "name",
               "value"
             ]
-          },
-          "minItems": 1,
-          "uniqueItems": true
+          }
         },
         "images": {
           "type": "array",
           "description": "Specifies container images to be used.",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "object",
             "properties": {
@@ -394,9 +390,7 @@
               "id",
               "path"
             ]
-          },
-          "minItems": 1,
-          "uniqueItems": true
+          }
         }
       },
       "required": [
@@ -423,6 +417,7 @@
             "temporary": {
               "type": "array",
               "description": "Specifies paths for temporary directories that will be created. (optional)",
+              "uniqueItems": true,
               "items": {
                 "type": "object",
                 "properties": {
@@ -435,13 +430,12 @@
                     ]
                   }
                 }
-              },
-              "minItems": 1,
-              "uniqueItems": true
+              }
             },
             "persistent": {
               "type": "array",
               "description": "Specifies paths for persistent directories that will be created. (optional)",
+              "uniqueItems": true,
               "items": {
                 "type": "object",
                 "properties": {
@@ -454,9 +448,7 @@
                     ]
                   }
                 }
-              },
-              "minItems": 1,
-              "uniqueItems": true
+              }
             }
           }
         }
@@ -464,13 +456,12 @@
       "required": [
         "persistentdata",
         "temporarydata"
-      ],
-      "minItems": 1,
-      "uniqueItems": true
+      ]
     },
     "plcnextservices": {
       "type": "array",
       "description": "Configuration of PLCnext Technology Runtime Services that the app needs. (optional)\nSupported from firmware 19.3.0",
+      "uniqueItems": true,
       "items": {
         "type": "object",
         "properties": {
@@ -509,9 +500,7 @@
           "service",
           "action"
         ]
-      },
-      "minItems": 1,
-      "uniqueItems": true
+      }
     },
     "updateconfigs": {
       "type": "object",

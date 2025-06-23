@@ -191,8 +191,7 @@ def test_plcnextapp_additionalInfo_item_missing_url(schema, complete_plcnextapp,
 
 def test_plcnextapp_additionalInfo_is_empty(schema, complete_plcnextapp):
     complete_plcnextapp["plcnextapp"]["additionalInfo"] = []
-    with pytest.raises(ValidationError):
-        validate(instance=complete_plcnextapp, schema=schema)
+    validate(instance=complete_plcnextapp, schema=schema)
 
 # [[ plcnextextensions ]]
 
