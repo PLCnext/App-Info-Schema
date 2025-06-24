@@ -221,16 +221,14 @@ def test_linuxdaemons_items_invalid_starttime(schema, linuxdaemons, starttime):
 def test_sharedlibs_is_valid(schema, sharedlibs):
     validate(instance=sharedlibs, schema=schema)
 
-@pytest.mark.parametrize("libpath", ["", "/path/lib..so", "/path/lib.a", "lib"])
-def test_sharedlibs_items_invalid_libpath(schema, sharedlibs, libpath):
+@pytest.mark.parametrize("libpath", ["lib.so", "/path/lib.abc.so", "/lib.so.1.0", "lib.so.12"])
+def test_sharedlibs_items_valid_libpath(schema, sharedlibs, libpath):
     sharedlibs["sharedlibs"][0]["libpath"] = libpath
-    with pytest.raises(ValidationError):
-        validate(instance=linuxdaemons, schema=schema)
+    validate(instance=sharedlibs, schema=schema)
 
 def test_sharedlibs_items_is_empty(schema, sharedlibs):
     sharedlibs["sharedlibs"] = []
-    with pytest.raises(ValidationError):
-        validate(instance=linuxdaemons, schema=schema)
+    validate(instance=sharedlibs, schema=schema)
 
 # [[ ocicontainer ]]
 

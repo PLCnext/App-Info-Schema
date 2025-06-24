@@ -282,8 +282,7 @@
         "type": "object",
         "properties": {
           "libpath": {
-            "type": "string",
-            "pattern": "^\/?[\\w\\-\\.]+(\/[\\w\\-\\.]+)*\\.so$",
+            "$ref": "#/$defs/path",
             "description": "Path to the shared library within the app container.\nMust be a valid path to a '*.so' file.",
             "examples": [
               "/path/to/lib.so",
