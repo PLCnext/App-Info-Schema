@@ -64,5 +64,7 @@ There are command line tools, that implement the validation against JSON schemas
 
 To quickly verify the validity without any installed tools, you may use an [online JSON schema validator](https://www.jsonschemavalidator.net/), that supports draft `2020-12`.
 
+## Contributing
 
+Currently, contributions to this repository are not possible. Nevertheless, upcoming issues can be provided the usual way.
 
