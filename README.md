@@ -16,7 +16,7 @@ Therefore, a `$schema` property containing a permalink to the raw schema file ca
 
 ```json
 {
-    "$schema": "https://git-ima.europe.phoenixcontact.com/K06295/app-info-schema/-/raw/5cd401052c48f2dd1855c74ba80b7dd68dedbd8b/app-info-schema.json"
+    "$schema": "https://github.com/PLCnext/App-Info-Schema/blob/ea31bc3bf3b0222f1f05c94d78ae2313c04e1c9d/app-info-schema.json"
     "plcnextapp": {
         ...
     }
@@ -26,7 +26,7 @@ To ensure updates are available as soon as they are pushed to main, a dynamic li
 
 ```json
 {
-    "$schema": "https://git-ima.europe.phoenixcontact.com/K06295/app-info-schema/-/raw/main/app-info-schema.json"
+    "$schema": "https://raw.githubusercontent.com/PLCnext/App-Info-Schema/refs/heads/main/app-info-schema.json"
     "plcnextapp": {
         ...
     }
