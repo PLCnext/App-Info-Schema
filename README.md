@@ -16,7 +16,7 @@ Therefore, a `$schema` property containing a permalink to the raw schema file ca
 
 ```json
 {
-    "$schema": "https://github.com/PLCnext/App-Info-Schema/blob/ea31bc3bf3b0222f1f05c94d78ae2313c04e1c9d/app-info-schema.json"
+    "$schema": "https://github.com/PLCnext/App-Info-Schema/blob/ea31bc3bf3b0222f1f05c94d78ae2313c04e1c9d/app-info-schema.json",
     "plcnextapp": {
         ...
     }
@@ -26,7 +26,7 @@ To ensure updates are available as soon as they are pushed to main, a dynamic li
 
 ```json
 {
-    "$schema": "https://raw.githubusercontent.com/PLCnext/App-Info-Schema/refs/heads/main/app-info-schema.json"
+    "$schema": "https://raw.githubusercontent.com/PLCnext/App-Info-Schema/refs/heads/main/app-info-schema.json",
     "plcnextapp": {
         ...
     }
@@ -37,7 +37,7 @@ The schema can also be referenced as a local file:
 
 ```json
 {
-    "$schema": "./app_info.schema.json"
+    "$schema": "./app_info.schema.json",
     "plcnextapp": {
         ...
     }
