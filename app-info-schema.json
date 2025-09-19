@@ -29,7 +29,7 @@
         },
         "target": {
           "type": "string",
-          "pattern": "^(\\w[\\w\\- ]*\\w)(,\\w[\\w\\- ]*\\w)*$",
+          "pattern": "^(?:[\\w()][\\w\\- ()]*[\\w()])(?:,[\\w()][\\w\\- ()]*[\\w()])*$",
           "description": "The devices this app is intended to run on.\nMust be a comma separated string without additional characters or spaces around the separator.\nSupported from firmware 21.0.0",
           "examples": [
             "AXC F 2152",
