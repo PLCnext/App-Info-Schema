@@ -85,7 +85,7 @@
               "url": {
                 "type": "string",
                 "maxLength": 512,
-                "description": "Link to an additional resource related to the app. (required when type is 'ExternalLink', 'LocalLink' or 'PortLink')\nLimited to a string of 256 characters."
+                "description": "Link to an additional resource related to the app. (required when type is 'ExternalLink', 'LocalLink' or 'PortLink')\nLimited to a string of 512 characters."
               },
               "type": {
                 "type": "string",
@@ -103,59 +103,25 @@
               "value",
               "type"
             ],
-            "allOf": [
-              {
-                "if": {
-                  "properties": {
-                    "type": {
-                      "const": "ExternalLink"
-                    }
-                  },
-                  "required": [
-                    "type"
-                  ]
-                },
-                "then": {
-                  "required": [
-                    "url"
+            "if": {
+              "properties": {
+                "type": {
+                  "enum": [
+                    "ExternalLink",
+                    "LocalLink",
+                    "PortLink"
                   ]
                 }
               },
-              {
-                "if": {
-                  "properties": {
-                    "type": {
-                      "const": "LocalLink"
-                    }
-                  },
-                  "required": [
-                    "type"
-                  ]
-                },
-                "then": {
-                  "required": [
-                    "url"
-                  ]
-                }
-              },
-              {
-                "if": {
-                  "properties": {
-                    "type": {
-                      "const": "PortLink"
-                    }
-                  },
-                  "required": [
-                    "type"
-                  ]
-                },
-                "then": {
-                  "required": [
-                    "url"
-                  ]
-                }
-              }
-            ]
+              "required": [
+                "type"
+              ]
+            },
+            "then": {
+              "required": [
+                "url"
+              ]
+            }
           }
         }
       },
